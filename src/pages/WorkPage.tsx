@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Project } from '../types';
 import { api } from '../services/api';
+import { safeJsonParse } from '../utils/json';
 import { SEO } from '../components/common/SEO';
 import { CTASection } from '../components/home/CTASection';
 import { WorkProcessSection } from '../components/work/WorkProcessSection';
@@ -48,30 +49,30 @@ export const WorkPage: React.FC<WorkPageProps> = ({ onNavigate }) => {
         canonicalPath="/work"
       />
 
-      <div className="pt-32 pb-20 bg-[#050505] min-h-screen">
+      <div className="pt-32 pb-20 bg-[#0A0A0A] min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="max-w-3xl mb-10">
-            <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-3">
+            <div className="text-xs uppercase tracking-widest text-blue-500 font-semibold mb-3">
               Client Engagement & Demonstration
             </div>
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white font-display mb-6">
               How We Work With You
             </h1>
-            <p className="text-lg text-zinc-400 leading-relaxed">
+            <p className="text-lg text-[#A1A1AA] leading-relaxed">
               We operate with absolute transparency before you commit to production. Explore our
               exact 4-step collaboration methodology and our architectural prototype explorations.
             </p>
           </div>
 
           {/* Section Mode Toggle (Process vs Concept Prototypes) */}
-          <div className="flex items-center gap-3 pb-8 mb-12 border-b border-[#1A1A1A]">
+          <div className="flex items-center gap-3 pb-8 mb-12 border-b border-[#27272A]/70">
             <button
               onClick={() => setActiveTab('process')}
-              className={`inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors cursor-pointer ${
+              className={`inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors ${
                 activeTab === 'process'
-                  ? 'bg-white text-black font-bold shadow-lg shadow-white/5'
-                  : 'bg-[#0D0D0D] text-zinc-400 hover:text-white hover:bg-[#141414] border border-[#1A1A1A]'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-[#141414] text-zinc-400 hover:text-white hover:bg-[#1A1A1A] border border-[#27272A]'
               }`}
             >
               <Workflow className="w-4 h-4" />
@@ -80,10 +81,10 @@ export const WorkPage: React.FC<WorkPageProps> = ({ onNavigate }) => {
 
             <button
               onClick={() => setActiveTab('concepts')}
-              className={`inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors cursor-pointer ${
+              className={`inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors ${
                 activeTab === 'concepts'
-                  ? 'bg-white text-black font-bold shadow-lg shadow-white/5'
-                  : 'bg-[#0D0D0D] text-zinc-400 hover:text-white hover:bg-[#141414] border border-[#1A1A1A]'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-[#141414] text-zinc-400 hover:text-white hover:bg-[#1A1A1A] border border-[#27272A]'
               }`}
             >
               <Layers className="w-4 h-4" />
@@ -97,7 +98,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ onNavigate }) => {
               <WorkProcessSection onNavigate={onNavigate} />
 
               {/* Brief Concept Preview Strip below Process */}
-              <div className="pt-12 border-t border-[#1A1A1A]">
+              <div className="pt-12 border-t border-[#27272A]">
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
                   <div>
                     <div className="text-xs uppercase tracking-widest text-zinc-500 font-semibold mb-2">
@@ -114,7 +115,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ onNavigate }) => {
 
                   <button
                     onClick={() => setActiveTab('concepts')}
-                    className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-300 hover:text-white transition-colors shrink-0 cursor-pointer"
+                    className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 hover:text-blue-300 transition-colors shrink-0"
                   >
                     <span>View All Concept Studies</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -126,9 +127,9 @@ export const WorkPage: React.FC<WorkPageProps> = ({ onNavigate }) => {
                     <div
                       key={project.id}
                       onClick={() => onNavigate(`/work/${project.slug}`)}
-                      className="group cursor-pointer bg-[#0D0D0D] border border-[#1A1A1A] rounded-xl overflow-hidden hover:border-zinc-700 transition-all flex flex-col justify-between shadow-xl shadow-black/40"
+                      className="group cursor-pointer bg-[#111111] border border-[#27272A] rounded-xl overflow-hidden hover:border-zinc-700 transition-all flex flex-col justify-between"
                     >
-                      <div className="relative aspect-[16/10] overflow-hidden bg-[#141414]">
+                      <div className="relative aspect-[16/10] overflow-hidden bg-[#171717]">
                         <img
                           src={project.coverImage}
                           alt={project.title}
@@ -140,10 +141,10 @@ export const WorkPage: React.FC<WorkPageProps> = ({ onNavigate }) => {
                         </div>
                       </div>
                       <div className="p-6">
-                        <div className="text-xs text-zinc-400 font-mono mb-1">
+                        <div className="text-xs text-blue-400 font-mono mb-1">
                           {project.industry}
                         </div>
-                        <h4 className="text-lg font-bold text-white font-display group-hover:text-zinc-200 transition-colors">
+                        <h4 className="text-lg font-bold text-white font-display group-hover:text-blue-400 transition-colors">
                           {project.title}
                         </h4>
                         <p className="text-xs text-zinc-400 mt-2 line-clamp-2">
@@ -166,10 +167,10 @@ export const WorkPage: React.FC<WorkPageProps> = ({ onNavigate }) => {
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                    className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors whitespace-nowrap shrink-0 ${
                       activeCategory === cat
-                        ? 'bg-white text-black font-bold shadow-lg shadow-white/5'
-                        : 'bg-[#0D0D0D] text-zinc-400 hover:text-white hover:bg-[#141414] border border-[#1A1A1A]'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-[#141414] text-zinc-400 hover:text-white hover:bg-[#1A1A1A] border border-[#27272A]'
                     }`}
                   >
                     {cat}
@@ -187,18 +188,16 @@ export const WorkPage: React.FC<WorkPageProps> = ({ onNavigate }) => {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
                   {filteredProjects.map((project) => {
-                    const tags: string[] = project.technologies
-                      ? JSON.parse(project.technologies)
-                      : [];
+                    const tags: string[] = safeJsonParse(project.technologies, []);
 
                     return (
                       <div
                         key={project.id}
                         onClick={() => onNavigate(`/work/${project.slug}`)}
-                        className="group cursor-pointer flex flex-col bg-[#0D0D0D] border border-[#1A1A1A] rounded-xl overflow-hidden hover:border-zinc-700 transition-all shadow-xl shadow-black/40"
+                        className="group cursor-pointer flex flex-col bg-[#111111] border border-[#27272A] rounded-xl overflow-hidden hover:border-zinc-700 transition-all"
                       >
                         {/* Visual Cover Frame */}
-                        <div className="relative aspect-[16/10] overflow-hidden bg-[#141414]">
+                        <div className="relative aspect-[16/10] overflow-hidden bg-[#171717]">
                           <img
                             src={project.coverImage}
                             alt={project.title}
@@ -213,7 +212,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ onNavigate }) => {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                             <div className="flex items-center gap-2 text-sm font-semibold text-white">
                               <span>View Architectural Breakdown</span>
-                              <ArrowUpRight className="w-4 h-4 text-zinc-300" />
+                              <ArrowUpRight className="w-4 h-4 text-blue-400" />
                             </div>
                           </div>
                         </div>
@@ -229,18 +228,18 @@ export const WorkPage: React.FC<WorkPageProps> = ({ onNavigate }) => {
                               <span>{project.projectType}</span>
                             </div>
 
-                            <h2 className="text-2xl font-bold text-white mb-2.5 group-hover:text-zinc-200 transition-colors font-display">
+                            <h2 className="text-2xl font-bold text-white mb-2.5 group-hover:text-blue-400 transition-colors font-display">
                               {project.title}
                             </h2>
 
-                            <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                            <p className="text-sm text-[#A1A1AA] leading-relaxed mb-6">
                               {project.shortDesc}
                             </p>
                           </div>
 
                           {/* Tech stack */}
                           {tags.length > 0 && (
-                            <div className="pt-4 border-t border-[#1A1A1A] flex flex-wrap items-center gap-2 text-xs font-mono text-zinc-400">
+                            <div className="pt-4 border-t border-[#27272A]/70 flex flex-wrap items-center gap-2 text-xs font-mono text-zinc-400">
                               {tags.map((tech, idx) => (
                                 <span key={tech}>
                                   {tech}

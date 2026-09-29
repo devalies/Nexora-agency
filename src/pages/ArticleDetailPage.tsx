@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BlogPost } from '../types';
 import { api } from '../services/api';
+import { safeJsonParse } from '../utils/json';
 import { SEO } from '../components/common/SEO';
 import { CTASection } from '../components/home/CTASection';
 import { ArrowLeft, Clock, User, Calendar } from 'lucide-react';
@@ -51,7 +52,7 @@ export const ArticleDetailPage: React.FC<ArticleDetailPageProps> = ({ slug, onNa
     );
   }
 
-  const tags: string[] = post.tags ? JSON.parse(post.tags) : [];
+  const tags: string[] = safeJsonParse(post.tags, []);
 
   return (
     <>

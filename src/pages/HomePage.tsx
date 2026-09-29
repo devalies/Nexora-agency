@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { HeroSection } from '../components/home/HeroSection';
+import { PrinciplesSection } from '../components/home/PrinciplesSection';
+import { ServicesSection } from '../components/home/ServicesSection';
 import { ProcessSection } from '../components/home/ProcessSection';
 import { IndustriesSection } from '../components/home/IndustriesSection';
 import { CTASection } from '../components/home/CTASection';
@@ -7,7 +9,6 @@ import { SEO } from '../components/common/SEO';
 import { api } from '../services/api';
 import { Service, Industry } from '../types';
 import { useSettings } from '../context/SettingsContext';
-import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -18,19 +19,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const [services, setServices] = useState<Service[]>([]);
   const [industries, setIndustries] = useState<Industry[]>([]);
 
-  useScrollReveal();
-
   useEffect(() => {
     Promise.all([
       api.getServices('published'),
       api.getIndustries(),
     ])
       .then(([servData, indData]) => {
-        setServices(servData);
-        setIndustries(indData);
+        setServices(Array.isArray(servData) ? servData : []);
+        setIndustries(Array.isArray(indData) ? indData : []);
       })
       .catch((err) => {
         console.error('Error fetching home data:', err);
+        setServices([]);
+        setIndustries([]);
       });
   }, []);
 
@@ -44,15 +45,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       <div className="flex flex-col min-h-screen">
         <HeroSection onNavigate={onNavigate} />
-        <div className="scroll-reveal">
-          <ProcessSection onNavigate={onNavigate} />
-        </div>
-        <div className="scroll-reveal">
-          <IndustriesSection industries={industries} onNavigate={onNavigate} />
-        </div>
-        <div className="scroll-reveal">
-          <CTASection onNavigate={onNavigate} ctaText={settings?.primaryCtaText} />
-        </div>
+        <PrinciplesSection />
+        <ServicesSection services={services} onNavigate={onNavigate} />
+        <ProcessSection onNavigate={onNavigate} />
+        <IndustriesSection industries={industries} onNavigate={onNavigate} />
+        <CTASection onNavigate={onNavigate} ctaText={settings?.primaryCtaText} />
       </div>
     </>
   );

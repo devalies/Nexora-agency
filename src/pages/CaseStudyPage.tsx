@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Project } from '../types';
 import { api } from '../services/api';
+import { safeJsonParse } from '../utils/json';
 import { SEO } from '../components/common/SEO';
 import { CTASection } from '../components/home/CTASection';
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Globe, Layers } from 'lucide-react';
@@ -35,7 +36,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
 
   if (isLoading) {
     return (
-      <div className="pt-40 pb-20 bg-[#050505] min-h-screen text-center text-zinc-500">
+      <div className="pt-40 pb-20 bg-[#0A0A0A] min-h-screen text-center text-zinc-500">
         Loading case study...
       </div>
     );
@@ -43,12 +44,12 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
 
   if (error || !project) {
     return (
-      <div className="pt-40 pb-20 bg-[#050505] min-h-screen text-center">
+      <div className="pt-40 pb-20 bg-[#0A0A0A] min-h-screen text-center">
         <h1 className="text-2xl font-bold text-white mb-4">Case Study Not Found</h1>
         <p className="text-zinc-400 mb-6">The project case study you requested could not be located.</p>
         <button
           onClick={() => onNavigate('/work')}
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black hover:bg-zinc-200 rounded-lg text-xs font-semibold uppercase tracking-wider cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Selected Work</span>
@@ -57,9 +58,9 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
     );
   }
 
-  const technologies: string[] = project.technologies ? JSON.parse(project.technologies) : [];
-  const results: string[] = project.results ? JSON.parse(project.results) : [];
-  const gallery: string[] = project.galleryImages ? JSON.parse(project.galleryImages) : [];
+  const technologies: string[] = safeJsonParse(project.technologies, []);
+  const results: string[] = safeJsonParse(project.results, []);
+  const gallery: string[] = safeJsonParse(project.galleryImages, []);
 
   // Find next project for footer navigation
   const currentIndex = allProjects.findIndex((p) => p.id === project.id);
@@ -76,12 +77,12 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
         canonicalPath={`/work/${project.slug}`}
       />
 
-      <article className="pt-32 pb-20 bg-[#050505] min-h-screen">
+      <article className="pt-32 pb-20 bg-[#0A0A0A] min-h-screen">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back Link */}
           <button
             onClick={() => onNavigate('/work')}
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-400 hover:text-white mb-8 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-400 hover:text-white mb-8 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Selected Work</span>
@@ -89,14 +90,14 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
 
           {/* Header Metadata */}
           <div className="mb-10">
-            <div className="flex items-center gap-2.5 text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-3">
+            <div className="flex items-center gap-2.5 text-xs uppercase tracking-widest text-blue-500 font-semibold mb-3">
               <span>{project.industry}</span>
               <span aria-hidden="true" className="text-zinc-600">·</span>
               <span>{project.projectType}</span>
               {project.isConcept && (
                 <>
                   <span aria-hidden="true" className="text-zinc-600">·</span>
-                  <span className="text-zinc-300">Concept / Studio Architecture</span>
+                  <span className="text-amber-400">Concept / Studio Architecture</span>
                 </>
               )}
             </div>
@@ -105,13 +106,13 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
               {project.title}
             </h1>
 
-            <p className="text-xl text-zinc-400 leading-relaxed max-w-3xl">
+            <p className="text-xl text-[#A1A1AA] leading-relaxed max-w-3xl">
               {project.shortDesc}
             </p>
           </div>
 
           {/* Project Spec Matrix */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 border-y border-[#1A1A1A] mb-12 text-sm">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 border-y border-[#27272A] mb-12 text-sm">
             <div>
               <div className="text-xs uppercase tracking-wider text-zinc-500 mb-1">Client</div>
               <div className="font-semibold text-white">{project.clientName}</div>
@@ -131,7 +132,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
                   href={project.projectUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-semibold text-zinc-200 hover:text-white inline-flex items-center gap-1"
+                  className="font-semibold text-blue-400 hover:text-blue-300 inline-flex items-center gap-1"
                 >
                   <span>Live Preview</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
@@ -143,7 +144,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
           </div>
 
           {/* Hero Showcase Image */}
-          <div className="rounded-xl overflow-hidden border border-[#1A1A1A] bg-[#0D0D0D] mb-16 shadow-2xl shadow-black/60">
+          <div className="rounded-xl overflow-hidden border border-[#27272A] bg-[#111111] mb-16 shadow-2xl">
             <img
               src={project.coverImage}
               alt={project.title}
@@ -167,7 +168,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
             </div>
 
             {/* The Strategy & Architecture */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-[#1A1A1A]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-[#27272A]/70">
               <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold">
                 02 / Strategy & Build
               </div>
@@ -183,7 +184,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
 
             {/* Results & Key Metrics */}
             {results.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-[#1A1A1A]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-[#27272A]/70">
                 <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold">
                   03 / Key Outcomes
                 </div>
@@ -192,9 +193,9 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
                     {results.map((res, i) => (
                       <div
                         key={i}
-                        className="p-5 rounded-lg bg-[#0D0D0D] border border-[#1A1A1A] flex items-start gap-3 shadow-lg shadow-black/30"
+                        className="p-5 rounded-lg bg-[#111111] border border-[#27272A] flex items-start gap-3"
                       >
-                        <CheckCircle2 className="w-5 h-5 text-zinc-300 shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
                         <span className="text-sm font-medium text-white">{res}</span>
                       </div>
                     ))}
@@ -205,7 +206,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
 
             {/* Technology Stack */}
             {technologies.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-[#1A1A1A]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-[#27272A]/70">
                 <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold">
                   04 / Tech Stack
                 </div>
@@ -213,7 +214,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
                   {technologies.map((t) => (
                     <span
                       key={t}
-                      className="px-3.5 py-1.5 rounded-md bg-[#141414] border border-[#1A1A1A] text-xs font-mono text-zinc-300"
+                      className="px-3.5 py-1.5 rounded-md bg-[#141414] border border-[#27272A] text-xs font-mono text-zinc-300"
                     >
                       {t}
                     </span>
@@ -224,7 +225,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
 
             {/* Additional Project Gallery */}
             {gallery.length > 0 && (
-              <div className="pt-8 border-t border-[#1A1A1A]">
+              <div className="pt-8 border-t border-[#27272A]/70">
                 <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-6">
                   05 / Interface Exploration
                 </div>
@@ -232,7 +233,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
                   {gallery.map((imgUrl, idx) => (
                     <div
                       key={idx}
-                      className="rounded-lg overflow-hidden border border-[#1A1A1A] bg-[#0D0D0D] shadow-lg shadow-black/30"
+                      className="rounded-lg overflow-hidden border border-[#27272A] bg-[#111111]"
                     >
                       <img
                         src={imgUrl}
@@ -249,19 +250,19 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ slug, onNavigate }
 
           {/* Next Case Study Preview */}
           {nextProject && nextProject.id !== project.id && (
-            <div className="mt-20 pt-12 border-t border-[#1A1A1A]">
+            <div className="mt-20 pt-12 border-t border-[#27272A]">
               <div className="text-xs uppercase tracking-wider text-zinc-500 mb-2">Next Case Study</div>
               <button
                 onClick={() => onNavigate(`/work/${nextProject.slug}`)}
-                className="group flex items-center justify-between w-full text-left p-6 rounded-xl bg-[#0D0D0D] border border-[#1A1A1A] hover:border-zinc-700 transition-all cursor-pointer shadow-xl shadow-black/30"
+                className="group flex items-center justify-between w-full text-left p-6 rounded-xl bg-[#111111] border border-[#27272A] hover:border-zinc-700 transition-all"
               >
                 <div>
-                  <div className="text-xs text-zinc-400 font-medium mb-1">{nextProject.industry}</div>
-                  <div className="text-2xl font-bold text-white group-hover:text-zinc-200 transition-colors font-display">
+                  <div className="text-xs text-blue-400 font-medium mb-1">{nextProject.industry}</div>
+                  <div className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors font-display">
                     {nextProject.title}
                   </div>
                 </div>
-                <div className="p-3 rounded-lg bg-[#141414] border border-[#1A1A1A] text-white group-hover:bg-white group-hover:text-black transition-colors">
+                <div className="p-3 rounded-lg bg-[#171717] text-white group-hover:bg-blue-600 transition-colors">
                   <ArrowUpRight className="w-5 h-5" />
                 </div>
               </button>

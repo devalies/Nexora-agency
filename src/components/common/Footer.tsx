@@ -16,9 +16,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const socialLinks = settings?.socialLinks
-    ? JSON.parse(settings.socialLinks)
-    : {};
+  let socialLinks: Record<string, string> = {};
+  if (settings?.socialLinks) {
+    if (typeof settings.socialLinks === 'string') {
+      try {
+        socialLinks = JSON.parse(settings.socialLinks);
+      } catch {
+        socialLinks = {};
+      }
+    } else if (typeof settings.socialLinks === 'object') {
+      socialLinks = settings.socialLinks as Record<string, string>;
+    }
+  }
 
   return (
     <footer className="bg-[#08090E] border-t border-[#1E2330] pt-16 pb-12 text-[#94A3B8]">
@@ -76,7 +85,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-blue-400" />
                 </a>
               </li>
-              {navigation
+              {(Array.isArray(navigation) ? navigation : [])
                 .filter((item) => item.isVisible && item.url !== '/work' && item.url !== '/insights' && item.url !== '/')
                 .map((item) => (
                   <li key={item.id}>

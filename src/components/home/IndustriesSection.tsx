@@ -9,12 +9,12 @@ interface IndustriesSectionProps {
 
 export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ industries, onNavigate }) => {
   return (
-    <section className="py-20 md:py-28 bg-[#050505] border-b border-[#1A1A1A]">
+    <section className="py-20 md:py-28 bg-[#08090E] border-b border-[#1E2330]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-3">
+            <div className="text-xs uppercase tracking-widest text-blue-400 font-semibold mb-3">
               Sector Expertise
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white font-display">
@@ -26,28 +26,28 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ industries
             className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-300 hover:text-white group cursor-pointer"
           >
             <span>View All Industries</span>
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-zinc-300 group-hover:text-white" />
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-blue-400" />
           </button>
         </div>
 
         {/* 4x2 Grid of Industries */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {industries.map((ind) => (
+          {(industries || []).map((ind) => (
             <div
               key={ind.id}
               onClick={() => onNavigate(`/contact?industry=${encodeURIComponent(ind.name)}`)}
-              className="group cursor-pointer bg-[#0D0D0D] border border-[#1A1A1A] p-6 rounded-xl hover:border-zinc-700 hover:bg-[#121212] transition-all flex flex-col justify-between shadow-lg shadow-black/30"
+              className="group cursor-pointer bg-[#0D1017] border border-[#1E2330] p-6 rounded-xl hover:border-blue-500/40 hover:bg-[#111520] transition-all flex flex-col justify-between shadow-lg shadow-black/20"
             >
               <div>
-                <h3 className="text-base font-bold text-white mb-2 group-hover:text-zinc-200 transition-colors font-display">
+                <h3 className="text-base font-bold text-white mb-2 group-hover:text-blue-400 transition-colors font-display">
                   {ind.name}
                 </h3>
-                <p className="text-xs text-zinc-400 leading-relaxed line-clamp-3">
+                <p className="text-xs text-[#94A3B8] leading-relaxed line-clamp-3">
                   {ind.description}
                 </p>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-[#1A1A1A] flex items-center justify-between text-xs text-zinc-500 group-hover:text-zinc-300">
+              <div className="pt-4 mt-4 border-t border-[#1E2330] flex items-center justify-between text-xs text-[#64748B] group-hover:text-blue-400">
                 <span>Explore vertical</span>
                 <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>

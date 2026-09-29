@@ -1,5 +1,6 @@
 import React from 'react';
 import { Service } from '../../types';
+import { safeJsonParse } from '../../utils/json';
 import { ArrowUpRight, CheckCircle2, Layout, ShoppingBag, Layers, Sparkles, Code2, TrendingUp } from 'lucide-react';
 
 interface ServicesSectionProps {
@@ -39,67 +40,51 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ services, onNa
           </button>
         </div>
 
-        {/* Services Grid (Asymmetric Bento/Clean Cards with High-Res Brand Media) */}
+        {/* Services Grid (Asymmetric Bento/Clean Cards) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => {
+          {(services || []).map((service, index) => {
             const Icon = iconMap[service.icon] || Layout;
-            const benefitsList: string[] = service.benefits ? JSON.parse(service.benefits) : [];
-            const serviceImage = service.featuredImage || '/src/assets/images/hero_studio_cinematic_1790149853210.jpg';
+            const benefitsList: string[] = safeJsonParse(service.benefits, []);
 
             return (
               <div
                 key={service.id}
-                onClick={() => onNavigate(`/services/${service.slug}`)}
-                className="bg-[#0D1017] border border-[#1E2330] rounded-xl hover:border-blue-500/50 hover:bg-[#111520] transition-all cursor-pointer group flex flex-col justify-between shadow-lg shadow-black/30 overflow-hidden"
+                onClick={() => onNavigate(`/contact?service=${encodeURIComponent(service.title)}`)}
+                className="bg-[#0D1017] border border-[#1E2330] p-8 rounded-xl hover:border-blue-500/50 hover:bg-[#111520] transition-all cursor-pointer group flex flex-col justify-between shadow-lg shadow-black/30"
               >
-                {/* Visual Media Header */}
-                <div className="relative h-44 w-full overflow-hidden bg-zinc-950 border-b border-[#1E2330]">
-                  <img
-                    src={serviceImage}
-                    alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1017] via-[#0D1017]/40 to-transparent" />
-                  
-                  {/* Floating Icon Pill */}
-                  <div className="absolute bottom-3 left-4 flex items-center gap-2.5">
-                    <div className="p-2.5 rounded-lg bg-[#141926]/90 backdrop-blur-md border border-[#1E2330] text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-md">
-                      <Icon className="w-5 h-5" />
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="p-3 rounded-lg bg-[#141926] border border-[#1E2330] text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                      <Icon className="w-6 h-6" />
                     </div>
+                    <span className="text-xs font-mono text-[#475569] font-semibold">
+                      0{index + 1}
+                    </span>
                   </div>
 
-                  <span className="absolute top-3 right-3 text-xs font-mono text-zinc-300 font-semibold bg-black/60 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
-                    0{index + 1}
-                  </span>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors font-display">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-[#A1A1AA] leading-relaxed mb-6">
+                    {service.shortDesc}
+                  </p>
+
+                  {/* Bullet Benefits preview */}
+                  {benefitsList.length > 0 && (
+                    <ul className="space-y-2 border-t border-[#27272A]/70 pt-4 mb-6">
+                      {benefitsList.slice(0, 3).map((b, i) => (
+                        <li key={i} className="flex items-start gap-2 text-xs text-zinc-400">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2.5 group-hover:text-blue-400 transition-colors font-display">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-[#A1A1AA] leading-relaxed mb-5 line-clamp-2">
-                      {service.shortDesc}
-                    </p>
-
-                    {/* Bullet Benefits preview */}
-                    {benefitsList.length > 0 && (
-                      <ul className="space-y-1.5 border-t border-[#27272A]/70 pt-3.5 mb-5">
-                        {benefitsList.slice(0, 2).map((b, i) => (
-                          <li key={i} className="flex items-start gap-2 text-xs text-zinc-400">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5" />
-                            <span className="line-clamp-1">{b}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 pt-2 group-hover:text-blue-300 border-t border-[#1E2330]/50">
-                    <span>Explore Breakdown</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </div>
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-400 pt-2 group-hover:text-blue-300">
+                  <span>Learn more</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </div>
             );

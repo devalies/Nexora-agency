@@ -1,5 +1,6 @@
 import React from 'react';
 import { Project } from '../../types';
+import { safeJsonParse } from '../../utils/json';
 import { ArrowUpRight } from 'lucide-react';
 
 interface FeaturedWorkSectionProps {
@@ -35,7 +36,7 @@ export const FeaturedWorkSection: React.FC<FeaturedWorkSectionProps> = ({ projec
         {/* Projects Grid: 2-Column High Impact Showcase */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {featured.map((project) => {
-            const tags: string[] = project.technologies ? JSON.parse(project.technologies) : [];
+            const tags: string[] = safeJsonParse(project.technologies, []);
 
             return (
               <div

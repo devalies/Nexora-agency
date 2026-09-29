@@ -22,14 +22,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   }, []);
 
   // Filter out CTA items, Work links, and Insights links from the middle nav zone
+  const navList = Array.isArray(navigation) ? navigation : [];
   const visibleNavLinks = [
     { id: 'nav_home', label: 'Home', url: '/', isVisible: true, displayOrder: 0, isCta: false },
-    ...navigation
+    ...navList
       .filter(item => item.isVisible && !item.isCta && item.url !== '/work' && item.url !== '/insights' && item.url !== '/')
       .sort((a, b) => a.displayOrder - b.displayOrder),
   ];
 
-  const ctaItem = navigation.find(item => item.isCta) || {
+  const ctaItem = navList.find(item => item.isCta) || {
     label: settings?.primaryCtaText || 'Start a Project',
     url: '/start-a-project',
   };

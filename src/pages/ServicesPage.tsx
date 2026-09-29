@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Service } from '../types';
 import { api } from '../services/api';
+import { safeJsonParse } from '../utils/json';
 import { SEO } from '../components/common/SEO';
-import { LetsConnectBar } from '../components/common/LetsConnectBar';
+import { CTASection } from '../components/home/CTASection';
 import { ArrowUpRight, CheckCircle2, Layout, ShoppingBag, Layers, Sparkles, Code2, TrendingUp, ShieldCheck } from 'lucide-react';
 
 interface ServicesPageProps {
@@ -66,8 +67,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
             <div className="space-y-12">
               {services.map((service, index) => {
                 const Icon = iconMap[service.icon] || Layout;
-                const benefits: string[] = service.benefits ? JSON.parse(service.benefits) : [];
-                const processSteps: string[] = service.processSteps ? JSON.parse(service.processSteps) : [];
+                const benefits: string[] = safeJsonParse(service.benefits, []);
+                const processSteps: string[] = safeJsonParse(service.processSteps, []);
 
                 return (
                   <div
@@ -153,14 +154,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="mt-20">
-          <LetsConnectBar
-            onNavigate={onNavigate}
-            title="Have a project or service in mind? Let's connect."
-            subtitle="Let’s align on your technology requirements, design milestones, and delivery timeline. Our engineering leads respond within 24 hours."
-            badge="Digital Capabilities & Systems"
-            primaryButtonText="Let's Connect"
-            secondaryButtonText="Start a Project Scope"
-          />
+          <CTASection onNavigate={onNavigate} />
         </div>
       </div>
     </>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Service, Project } from '../types';
 import { api } from '../services/api';
+import { safeJsonParse } from '../utils/json';
 import { SEO } from '../components/common/SEO';
-import { LetsConnectBar } from '../components/common/LetsConnectBar';
+import { CTASection } from '../components/home/CTASection';
 import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface ServiceDetailPageProps {
@@ -25,7 +26,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ slug, onNa
         if (data.relatedProjectIds) {
           try {
             const all = await api.getProjects('published');
-            const ids: string[] = JSON.parse(data.relatedProjectIds);
+            const ids: string[] = safeJsonParse(data.relatedProjectIds, []);
             setRelatedProjects(all.filter((p) => ids.includes(p.id)));
           } catch {
             // ignore
@@ -62,8 +63,8 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ slug, onNa
     );
   }
 
-  const benefits: string[] = service.benefits ? JSON.parse(service.benefits) : [];
-  const processSteps: string[] = service.processSteps ? JSON.parse(service.processSteps) : [];
+  const benefits: string[] = safeJsonParse(service.benefits, []);
+  const processSteps: string[] = safeJsonParse(service.processSteps, []);
 
   const faqs = [
     {
@@ -219,15 +220,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ slug, onNa
         </div>
 
         <div className="mt-16">
-          <LetsConnectBar
-            onNavigate={onNavigate}
-            title={`Interested in ${service.title}? Let's connect.`}
-            subtitle={`Consult directly with our leads on requirements, tech stack recommendations, and estimates for ${service.title}.`}
-            badge="Tailored Capability"
-            primaryButtonText="Let's Connect"
-            secondaryButtonText="Start a Project Scope"
-            serviceFocus={service.title}
-          />
+          <CTASection onNavigate={onNavigate} />
         </div>
       </div>
     </>
