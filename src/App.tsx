@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SettingsProvider } from './context/SettingsContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 
@@ -112,17 +113,19 @@ export function App() {
   };
 
   return (
-    <SettingsProvider>
-      <div className="min-h-screen bg-[#0A0A0A] text-zinc-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
-        <Navbar currentPath={currentPath} onNavigate={navigate} />
+    <ThemeProvider defaultTheme="dark" storageKey="nexora-theme">
+      <SettingsProvider>
+        <div className="min-h-screen bg-[#0A0A0A] text-zinc-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+          <Navbar currentPath={currentPath} onNavigate={navigate} />
 
-        <main className="flex-1">
-          {renderRoute()}
-        </main>
+          <main className="flex-1">
+            {renderRoute()}
+          </main>
 
-        <Footer onNavigate={navigate} />
-      </div>
-    </SettingsProvider>
+          <Footer onNavigate={navigate} />
+        </div>
+      </SettingsProvider>
+    </ThemeProvider>
   );
 }
 
