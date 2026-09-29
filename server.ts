@@ -48,12 +48,10 @@ async function startServer() {
 
     const staticRoutes = [
       { path: '/', priority: '1.0', changefreq: 'weekly' },
-      { path: '/work', priority: '0.9', changefreq: 'weekly' },
       { path: '/services', priority: '0.9', changefreq: 'monthly' },
       { path: '/process', priority: '0.8', changefreq: 'monthly' },
       { path: '/about', priority: '0.8', changefreq: 'monthly' },
       { path: '/industries', priority: '0.8', changefreq: 'monthly' },
-      { path: '/insights', priority: '0.8', changefreq: 'daily' },
       { path: '/contact', priority: '0.8', changefreq: 'monthly' },
       { path: '/start-a-project', priority: '0.9', changefreq: 'monthly' },
       { path: '/privacy-policy', priority: '0.3', changefreq: 'yearly' },
@@ -64,20 +62,12 @@ async function startServer() {
       xml += `  <url>\n    <loc>${baseUrl}${r.path}</loc>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority}</priority>\n  </url>\n`;
     }
 
-    for (const p of projects) {
-      xml += `  <url>\n    <loc>${baseUrl}/work/${p.slug}</loc>\n    <lastmod>${p.updatedAt.split('T')[0]}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.85</priority>\n  </url>\n`;
-    }
-
     for (const s of services) {
       xml += `  <url>\n    <loc>${baseUrl}/services/${s.slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.85</priority>\n  </url>\n`;
     }
 
     for (const i of industries) {
       xml += `  <url>\n    <loc>${baseUrl}/industries/${i.slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.75</priority>\n  </url>\n`;
-    }
-
-    for (const b of blogPosts) {
-      xml += `  <url>\n    <loc>${baseUrl}/insights/${b.slug}</loc>\n    <lastmod>${b.publishedAt.split('T')[0]}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
     }
 
     xml += `</urlset>`;

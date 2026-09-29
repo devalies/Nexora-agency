@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 interface NexoraLogoProps {
   className?: string;
@@ -13,92 +13,109 @@ export const NexoraLogo: React.FC<NexoraLogoProps> = ({
   iconSize = 34,
   showTagline = false,
 }) => {
+  const rawId = useId();
+  const uid = rawId.replace(/[^a-zA-Z0-9]/g, '_');
+
+  const gradMain = `nexora_grad_main_${uid}`;
+  const gradLeft = `nexora_grad_left_${uid}`;
+  const gradRight = `nexora_grad_right_${uid}`;
+  const glowFilter = `nexora_glow_${uid}`;
+
   return (
     <div className={`inline-flex items-center gap-3 select-none ${className}`}>
-      {/* 3D Folded Origami Ribbon 'N' Mark */}
+      {/* High-Impact Vibrant 3D Folded Nexora Icon */}
       <svg
         width={iconSize}
         height={iconSize}
-        viewBox="0 0 100 100"
+        viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="shrink-0 transition-transform duration-300 hover:scale-105"
-        aria-label="Nexora logo mark"
+        className="shrink-0 transition-transform duration-300 hover:scale-105 filter drop-shadow-[0_2px_12px_rgba(59,130,246,0.5)]"
+        aria-label="Nexora logo"
       >
         <defs>
-          {/* Main Diagonal Fold Gradient */}
-          <linearGradient id="nexora_diag" x1="20" y1="20" x2="80" y2="80" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#FFFFFF" />
-            <stop offset="40%" stopColor="#D4D4D8" />
-            <stop offset="100%" stopColor="#71717A" />
+          {/* Main Diagonal Blade Gradient: Vibrant Cyan to Electric Royal Blue */}
+          <linearGradient id={gradMain} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#38BDF8" />
+            <stop offset="50%" stopColor="#2563EB" />
+            <stop offset="100%" stopColor="#1D4ED8" />
           </linearGradient>
 
-          {/* Left Vertical Ribbon Gradient */}
-          <linearGradient id="nexora_left" x1="15" y1="90" x2="35" y2="20" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#3F3F46" />
-            <stop offset="60%" stopColor="#71717A" />
-            <stop offset="100%" stopColor="#A1A1AA" />
+          {/* Left Wing Gradient: Electric Blue to Sky Accent */}
+          <linearGradient id={gradLeft} x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#1D4ED8" />
+            <stop offset="60%" stopColor="#3B82F6" />
+            <stop offset="100%" stopColor="#60A5FA" />
           </linearGradient>
 
-          {/* Right Vertical Ribbon Gradient */}
-          <linearGradient id="nexora_right" x1="65" y1="10" x2="85" y2="90" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#E4E4E7" />
-            <stop offset="50%" stopColor="#A1A1AA" />
-            <stop offset="100%" stopColor="#27272A" />
+          {/* Right Wing Gradient: Deep Vivid Cobalt to Light Cyan */}
+          <linearGradient id={gradRight} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#60A5FA" />
+            <stop offset="60%" stopColor="#2563EB" />
+            <stop offset="100%" stopColor="#1E40AF" />
           </linearGradient>
 
-          {/* Ambient Inner Shadow / Fold Depth */}
-          <linearGradient id="nexora_shadow" x1="40" y1="35" x2="55" y2="55" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#09090B" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#09090B" stopOpacity="0" />
-          </linearGradient>
+          {/* Subtle Glow Filter */}
+          <filter id={glowFilter} x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
         </defs>
 
-        {/* Left vertical folding wing */}
+        {/* Ambient Back Glow Ring */}
+        <circle cx="20" cy="20" r="16" fill="#3B82F6" opacity="0.12" />
+
+        {/* Left Vertical Folding Wing */}
         <path
-          d="M18 78V34C18 27.37 23.37 22 30 22C33.5 22 36.6 23.5 38.8 25.9L18 78Z"
-          fill="url(#nexora_left)"
+          d="M7 32V14C7 10.686 9.686 8 13 8C14.8 8 16.4 8.8 17.5 10L7 32Z"
+          fill={`url(#${gradLeft})`}
         />
 
-        {/* Dynamic Folded Diagonal Ribbon */}
+        {/* Center Diagonal Folding Blade */}
         <path
-          d="M26 22L76 74C80 78 84 75 84 69V28C84 24.69 81.31 22 78 22H64L32 60L26 22Z"
-          fill="url(#nexora_diag)"
+          d="M11 8L31 30C33 32 33 34 31 34C29 34 27 33 25 31L7 11C7 9.3 8.3 8 10 8H11Z"
+          fill={`url(#${gradMain})`}
         />
 
-        {/* Left folded shadow tuck */}
+        {/* Main Ribbon Traverse */}
         <path
-          d="M18 78C18 80.5 20.5 82 23 80.5L46 62L34 50L18 78Z"
-          fill="#18181B"
+          d="M10 8H16L33 27V32C33 33.1 32.1 34 31 34L10 8Z"
+          fill={`url(#${gradMain})`}
         />
 
-        {/* Right vertical folding stem */}
+        {/* Right Vertical Folding Wing */}
         <path
-          d="M82 24V68C82 74.63 76.63 80 70 80C66.5 80 63.4 78.5 61.2 76.1L82 24Z"
-          fill="url(#nexora_right)"
+          d="M33 8V26C33 29.314 30.314 32 27 32C25.2 32 23.6 31.2 22.5 30L33 8Z"
+          fill={`url(#${gradRight})`}
         />
 
-        {/* Soft center fold accent */}
+        {/* Crisp Lighting Edge Specular */}
         <path
-          d="M38 25L62 75L50 63L30 38L38 25Z"
-          fill="url(#nexora_shadow)"
+          d="M13 8L33 29"
+          stroke="#93C5FD"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          opacity="0.85"
         />
+
+        {/* Top-left Spark / Specular Highlight */}
+        <circle cx="13" cy="8" r="1.5" fill="#FFFFFF" />
       </svg>
 
       {/* Typography */}
       {variant !== 'mark' && (
         <div className="flex flex-col justify-center">
           <div className="flex items-center tracking-[0.22em] font-extrabold text-white text-lg leading-none uppercase font-display">
-            <span>NEXOR</span>
-            <span className="text-zinc-400">A</span>
+            <span className="text-white">NEXOR</span>
+            <span className="text-blue-500 font-black">A</span>
           </div>
 
           {(showTagline || variant === 'full') && (
             <div className="text-[7.5px] uppercase tracking-[0.32em] text-zinc-400 mt-1 font-medium whitespace-nowrap">
               <span>Website Design</span>
-              <span className="text-zinc-500 mx-1">·</span>
+              <span className="text-blue-500 mx-1">·</span>
               <span>Development</span>
-              <span className="text-zinc-500 mx-1">·</span>
+              <span className="text-blue-500 mx-1">·</span>
               <span>Growth</span>
             </div>
           )}
