@@ -6,16 +6,12 @@ import { Footer } from './components/common/Footer';
 
 // Public Pages
 import { HomePage } from './pages/HomePage';
-import { WorkPage } from './pages/WorkPage';
-import { CaseStudyPage } from './pages/CaseStudyPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { ProcessPage } from './pages/ProcessPage';
 import { AboutPage } from './pages/AboutPage';
 import { IndustriesPage } from './pages/IndustriesPage';
 import { IndustryDetailPage } from './pages/IndustryDetailPage';
-import { InsightsPage } from './pages/InsightsPage';
-import { ArticleDetailPage } from './pages/ArticleDetailPage';
 import { ContactPage } from './pages/ContactPage';
 import { StartAProjectPage } from './pages/StartAProjectPage';
 import { LegalPage } from './pages/LegalPage';
@@ -48,15 +44,6 @@ export function App() {
       return <HomePage onNavigate={navigate} />;
     }
 
-    if (currentPath === '/work') {
-      return <WorkPage onNavigate={navigate} />;
-    }
-
-    if (currentPath.startsWith('/work/')) {
-      const slug = currentPath.replace('/work/', '');
-      return <CaseStudyPage slug={slug} onNavigate={navigate} />;
-    }
-
     if (currentPath === '/services') {
       return <ServicesPage onNavigate={navigate} />;
     }
@@ -81,15 +68,6 @@ export function App() {
     if (currentPath.startsWith('/industries/')) {
       const slug = currentPath.replace('/industries/', '');
       return <IndustryDetailPage slug={slug} onNavigate={navigate} />;
-    }
-
-    if (currentPath === '/insights') {
-      return <InsightsPage onNavigate={navigate} />;
-    }
-
-    if (currentPath.startsWith('/insights/')) {
-      const slug = currentPath.replace('/insights/', '');
-      return <ArticleDetailPage slug={slug} onNavigate={navigate} />;
     }
 
     if (currentPath === '/contact' || currentPath.startsWith('/contact?')) {

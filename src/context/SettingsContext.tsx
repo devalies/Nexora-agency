@@ -37,13 +37,11 @@ const defaultSettings: SiteSettings = {
 
 const defaultNavigation: NavigationItem[] = [
   { id: 'nav_home', label: 'Home', url: '/', isVisible: true, displayOrder: 0, isCta: false },
-  { id: 'nav_1', label: 'Work', url: '/work', isVisible: false, displayOrder: 1, isCta: false },
-  { id: 'nav_2', label: 'Services', url: '/services', isVisible: true, displayOrder: 2, isCta: false },
-  { id: 'nav_3', label: 'Process', url: '/process', isVisible: true, displayOrder: 3, isCta: false },
-  { id: 'nav_4', label: 'About', url: '/about', isVisible: true, displayOrder: 4, isCta: false },
-  { id: 'nav_5', label: 'Insights', url: '/insights', isVisible: false, displayOrder: 5, isCta: false },
-  { id: 'nav_6', label: 'Contact', url: '/contact', isVisible: true, displayOrder: 6, isCta: false },
-  { id: 'nav_7', label: 'Start a Project', url: '/start-a-project', isVisible: true, displayOrder: 7, isCta: true },
+  { id: 'nav_2', label: 'Services', url: '/services', isVisible: true, displayOrder: 1, isCta: false },
+  { id: 'nav_3', label: 'Process', url: '/process', isVisible: true, displayOrder: 2, isCta: false },
+  { id: 'nav_4', label: 'About', url: '/about', isVisible: true, displayOrder: 3, isCta: false },
+  { id: 'nav_6', label: 'Contact', url: '/contact', isVisible: true, displayOrder: 4, isCta: false },
+  { id: 'nav_7', label: 'Start a Project', url: '/start-a-project', isVisible: true, displayOrder: 5, isCta: true },
 ];
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
