@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { SettingsProvider } from './context/SettingsContext';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
@@ -121,6 +122,7 @@ export function App() {
         </main>
 
         <Footer onNavigate={navigate} />
+        <SpeedInsights />
       </div>
     </SettingsProvider>
   );
