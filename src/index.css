@@ -1,0 +1,419 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Syne", "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  background-color: #08090E;
+  color: #F8FAFC;
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Light Theme Styling Mode */
+html.light-mode {
+  color-scheme: light;
+}
+
+body.light-theme {
+  background-color: #F8FAFC;
+  color: #0F172A;
+}
+
+/* Global Light Mode container backgrounds */
+html.light-mode div#root > div {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+/* Light mode Navbar & Header */
+html.light-mode header.bg-scrolled-light {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-bottom-color: rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.07) !important;
+}
+
+html.light-mode header nav a {
+  color: #475569 !important;
+}
+
+html.light-mode header nav a:hover {
+  color: #0F172A !important;
+}
+
+html.light-mode header nav a.font-semibold {
+  color: #0F172A !important;
+}
+
+/* General Dark background overrides in Light Mode */
+html.light-mode .bg-\[\#08090E\],
+html.light-mode .bg-\[\#0A0A0A\],
+html.light-mode .bg-\[\#0A0D14\],
+html.light-mode .bg-black {
+  background-color: #F8FAFC !important;
+}
+
+/* Cards and panels in Light Mode */
+html.light-mode .bg-\[\#0D1017\],
+html.light-mode .bg-\[\#111111\],
+html.light-mode .bg-\[\#111520\],
+html.light-mode .bg-\[\#0C0E14\],
+html.light-mode .bg-\[\#0E0E0E\],
+html.light-mode .bg-\[\#141414\] {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Admin panel root layout in Light Mode */
+html.light-mode aside.bg-\[\#0A0A0A\],
+html.light-mode aside {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 2px 0 12px rgba(15, 23, 42, 0.03) !important;
+}
+
+html.light-mode main.bg-\[\#0E0E0E\],
+html.light-mode .min-h-screen.bg-\[\#0E0E0E\] {
+  background-color: #F8FAFC !important;
+}
+
+/* Admin Sidebar Navigation Items in Light Mode */
+html.light-mode aside nav button.text-zinc-400 {
+  color: #475569 !important;
+}
+
+html.light-mode aside nav button.text-zinc-400:hover {
+  color: #0F172A !important;
+  background-color: #F1F5F9 !important;
+}
+
+html.light-mode aside nav button.bg-blue-600 {
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25) !important;
+}
+
+html.light-mode aside nav button.bg-blue-600 * {
+  color: #FFFFFF !important;
+}
+
+/* Admin Sidebar Footer / User Profile */
+html.light-mode aside .bg-\[\#0C0C0C\] {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+html.light-mode aside .text-zinc-500 {
+  color: #64748B !important;
+}
+
+/* Admin Mobile Top Bar */
+html.light-mode .md\:hidden.bg-\[\#0A0A0A\] {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* Admin Tables, Theads, and Table Rows */
+html.light-mode table thead.bg-\[\#171717\],
+html.light-mode table thead {
+  background-color: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+  color: #475569 !important;
+}
+
+html.light-mode table tbody tr:hover {
+  background-color: #F8FAFC !important;
+}
+
+html.light-mode table tbody tr {
+  border-color: #E2E8F0 !important;
+}
+
+/* Admin metric cards hover states */
+html.light-mode .hover\:bg-\[\#161616\]:hover {
+  background-color: #F8FAFC !important;
+}
+
+/* Admin Modal / Confirmation Dialog */
+html.light-mode div.bg-\[\#121620\] {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light-mode div.bg-\[\#121620\] .border-\[\#1E2330\] {
+  border-color: #E2E8F0 !important;
+}
+
+/* Subtle accent cards, inner deliverable items, and secondary button backgrounds */
+html.light-mode .bg-\[\#141926\],
+html.light-mode .bg-\[\#171717\],
+html.light-mode .bg-\[\#161B26\],
+html.light-mode .bg-\[\#11141E\],
+html.light-mode .bg-\[\#0E0E0E\] .bg-\[\#141414\] {
+  background-color: #F1F5F9 !important;
+}
+
+/* Specific styling for nested deliverable panels in Services & Process pages */
+html.light-mode .bg-\[\#0E0E0E\] {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+html.light-mode .bg-\[\#0E0E0E\] .bg-\[\#141414\] {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Light Mode support for Let's Connect CTA Bar */
+html.light-mode .lets-connect-bar {
+  background-color: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+}
+
+html.light-mode .lets-connect-bar .from-\[\#0E1320\] {
+  background-image: linear-gradient(to right, #FFFFFF, #F8FAFC, #FFFFFF) !important;
+  border-color: #BFDBFE !important;
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05) !important;
+}
+
+html.light-mode .lets-connect-bar h2 {
+  color: #0F172A !important;
+}
+
+html.light-mode .lets-connect-bar p {
+  color: #475569 !important;
+}
+
+html.light-mode .lets-connect-secondary-btn {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+}
+
+html.light-mode .lets-connect-secondary-btn span {
+  color: #0F172A !important;
+}
+
+html.light-mode .lets-connect-secondary-btn:hover {
+  background-color: #F8FAFC !important;
+  color: #1D4ED8 !important;
+  border-color: #94A3B8 !important;
+}
+
+html.light-mode .lets-connect-secondary-btn:hover span {
+  color: #1D4ED8 !important;
+}
+
+/* Deliverable and Execution Phase text readability */
+html.light-mode .bg-\[\#0E0E0E\] .text-white,
+html.light-mode .bg-\[\#0E0E0E\] .text-zinc-300,
+html.light-mode .bg-\[\#0E0E0E\] .text-zinc-400 {
+  color: #0F172A !important;
+}
+
+/* Services & Process badges and code tags */
+html.light-mode .font-mono.text-zinc-300,
+html.light-mode .font-mono.text-zinc-500 {
+  color: #475569 !important;
+}
+
+html.light-mode .font-mono.text-blue-500,
+html.light-mode .font-mono.text-blue-400 {
+  color: #2563EB !important;
+}
+
+/* Borders in Light Mode */
+html.light-mode .border-\[\#1E2330\],
+html.light-mode .border-\[\#27272A\],
+html.light-mode .border-\[\#27272A\]\/50,
+html.light-mode .border-\[\#27272A\]\/60,
+html.light-mode .border-\[\#27272A\]\/70,
+html.light-mode .border-zinc-800,
+html.light-mode .border-zinc-700 {
+  border-color: #E2E8F0 !important;
+}
+
+/* Text colors in Light Mode */
+html.light-mode h1.text-white,
+html.light-mode h2.text-white,
+html.light-mode h3.text-white,
+html.light-mode h4.text-white,
+html.light-mode span.text-white:not(.btn-text),
+html.light-mode p.text-white,
+html.light-mode .text-white:not(.btn-text-white) {
+  color: #0F172A !important;
+}
+
+html.light-mode .text-\[\#94A3B8\],
+html.light-mode .text-\[\#A1A1AA\],
+html.light-mode .text-zinc-400 {
+  color: #475569 !important;
+}
+
+html.light-mode .text-\[\#64748B\],
+html.light-mode .text-zinc-500 {
+  color: #64748B !important;
+}
+
+html.light-mode .text-zinc-300,
+html.light-mode .text-zinc-200 {
+  color: #1E293B !important;
+}
+
+/* BUTTONS & HOVER STATES IN LIGHT MODE */
+
+/* 1. Primary Action Buttons (Blue) */
+html.light-mode .bg-blue-600,
+html.light-mode button.bg-blue-600,
+html.light-mode a.bg-blue-600 {
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25) !important;
+}
+
+html.light-mode .bg-blue-600:hover,
+html.light-mode button.bg-blue-600:hover,
+html.light-mode a.bg-blue-600:hover {
+  background-color: #1D4ED8 !important;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35) !important;
+  transform: translateY(-1px);
+}
+
+html.light-mode .bg-blue-600:active,
+html.light-mode button.bg-blue-600:active,
+html.light-mode a.bg-blue-600:active {
+  background-color: #1E40AF !important;
+  transform: translateY(0);
+}
+
+/* Ensure text inside primary buttons stays crisp white */
+html.light-mode .bg-blue-600 span,
+html.light-mode .bg-blue-600 svg,
+html.light-mode button.bg-blue-600 *,
+html.light-mode a.bg-blue-600 * {
+  color: #FFFFFF !important;
+}
+
+/* 2. Secondary & Outline Buttons */
+html.light-mode button.bg-\[\#11141E\],
+html.light-mode button.bg-\[\#171717\],
+html.light-mode a.bg-\[\#11141E\],
+html.light-mode .btn-secondary {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light-mode button.bg-\[\#11141E\]:hover,
+html.light-mode button.bg-\[\#171717\]:hover,
+html.light-mode a.bg-\[\#11141E\]:hover,
+html.light-mode .btn-secondary:hover {
+  background-color: #F8FAFC !important;
+  color: #0284C7 !important;
+  border-color: #94A3B8 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light-mode button.bg-\[\#11141E\] span,
+html.light-mode button.bg-\[\#171717\] span,
+html.light-mode a.bg-\[\#11141E\] span {
+  color: inherit !important;
+}
+
+/* 3. Interactive Cards Hover */
+html.light-mode .hover\:border-blue-500\/50:hover {
+  border-color: #3B82F6 !important;
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.1) !important;
+}
+
+html.light-mode .hover\:bg-\[\#111520\]:hover,
+html.light-mode .hover\:bg-\[\#161B28\]:hover {
+  background-color: #F8FAFC !important;
+}
+
+/* 4. Form inputs in Light Mode */
+html.light-mode input,
+html.light-mode textarea,
+html.light-mode select {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+html.light-mode input::placeholder,
+html.light-mode textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+html.light-mode input:focus,
+html.light-mode textarea:focus,
+html.light-mode select:focus {
+  border-color: #2563EB !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+
+/* 5. Footer in Light Mode */
+html.light-mode footer {
+  background-color: #F1F5F9 !important;
+  border-top-color: #E2E8F0 !important;
+}
+
+html.light-mode footer a {
+  color: #475569 !important;
+}
+
+html.light-mode footer a:hover {
+  color: #0F172A !important;
+}
+
+/* Scroll effect classes */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.font-display {
+  font-family: "Syne", "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #08090E;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E2330;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2D3548;
+}
