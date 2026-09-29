@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { SettingsProvider } from './context/SettingsContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/common/Navbar';
@@ -102,6 +103,7 @@ export function App() {
 
           <Footer onNavigate={navigate} />
         </div>
+        <Analytics />
       </SettingsProvider>
     </ThemeProvider>
   );
