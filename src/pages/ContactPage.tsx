@@ -70,7 +70,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
     <>
       <SEO
         title="Contact Nexora Studio — Direct Inquiries"
-        description="Get in touch with Nexora Studio in San Francisco. Email, phone, or schedule a strategic project discussion."
+        description="Get in touch with Nexora Studio. We are located Dhaka, Bangladesh. Email, phone, or schedule a strategic project discussion."
         canonicalPath="/contact"
       />
 
@@ -149,9 +149,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs text-[#64748B] uppercase tracking-wider font-semibold">Studio Headquarters</div>
+                    <div className="text-xs text-[#64748B] uppercase tracking-wider font-semibold">Studio Location</div>
                     <div className="text-sm font-medium text-white">
-                      {settings?.address || '548 Market St, Suite 7210, San Francisco, CA 94104'}
+                      {settings?.address || 'We are located Dhaka, Bangladesh'}
                     </div>
                   </div>
                 </div>

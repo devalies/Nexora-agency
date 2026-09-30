@@ -8,7 +8,7 @@ export const initialSettings: SiteSettings = {
   email: 'mohammadaliomega@gmail.com',
   phone: '+1 (415) 890-3420',
   whatsapp: '+14158903420',
-  address: '548 Market St, Suite 7210, San Francisco, CA 94104',
+  address: 'We are located Dhaka, Bangladesh',
   socialLinks: JSON.stringify({
     linkedin: 'https://linkedin.com/company/nexora-studio',
     twitter: 'https://twitter.com/nexora_studio',

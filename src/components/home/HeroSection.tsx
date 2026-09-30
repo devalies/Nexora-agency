@@ -26,7 +26,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
             <span>Independent Design & Engineering Studio</span>
             <span aria-hidden="true" className="text-zinc-600">·</span>
-            <span>San Francisco</span>
+            <span>Dhaka, Bangladesh</span>
           </div>
 
           {/* Headline - Editorial and Confident */}
