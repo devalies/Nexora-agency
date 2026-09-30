@@ -77,7 +77,7 @@ export function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="nexora-theme">
       <SettingsProvider>
-        <div className="min-h-screen bg-[#0A0A0A] text-zinc-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+        <div className="min-h-screen bg-[#08090E] text-zinc-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
           <Navbar currentPath={currentPath} onNavigate={navigate} />
 
           <main className="flex-1">
