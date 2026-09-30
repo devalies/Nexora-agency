@@ -1,6 +1,6 @@
 import React from 'react';
 import { SEO } from '../components/common/SEO';
-import { LetsConnectBar } from '../components/common/LetsConnectBar';
+import { CTASection } from '../components/home/CTASection';
 import { Compass, Lightbulb, PenTool, Terminal, Rocket, LineChart, ShieldCheck, MessageSquare, Clock } from 'lucide-react';
 
 interface ProcessPageProps {
@@ -75,7 +75,7 @@ export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
         canonicalPath="/process"
       />
 
-      <div className="pt-32 pb-20 bg-[#0A0A0A] min-h-screen">
+      <div className="pt-32 pb-20 bg-transparent min-h-screen relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="max-w-3xl mb-16">
@@ -182,14 +182,7 @@ export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="mt-20">
-          <LetsConnectBar
-            onNavigate={onNavigate}
-            title="Experience our process firsthand. Let's connect."
-            subtitle="Book an initial 30-minute discovery session with our senior engineers and product designers. We'll map your technical requirements with zero ambiguity."
-            badge="Predictable Excellence"
-            primaryButtonText="Let's Connect"
-            secondaryButtonText="Explore Engagement Models"
-          />
+          <CTASection onNavigate={onNavigate} />
         </div>
       </div>
     </>

@@ -9,7 +9,6 @@ import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { ProcessPage } from './pages/ProcessPage';
-import { AboutPage } from './pages/AboutPage';
 import { IndustriesPage } from './pages/IndustriesPage';
 import { IndustryDetailPage } from './pages/IndustryDetailPage';
 import { ContactPage } from './pages/ContactPage';
@@ -55,10 +54,6 @@ export function App() {
 
     if (currentPath === '/process') {
       return <ProcessPage onNavigate={navigate} />;
-    }
-
-    if (currentPath === '/about') {
-      return <AboutPage onNavigate={navigate} />;
     }
 
     if (currentPath === '/industries') {

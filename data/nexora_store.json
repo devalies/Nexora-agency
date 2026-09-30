@@ -424,19 +424,11 @@
       "isCta": false
     },
     {
-      "id": "nav_4",
-      "label": "About",
-      "url": "/about",
-      "isVisible": true,
-      "displayOrder": 3,
-      "isCta": false
-    },
-    {
       "id": "nav_6",
       "label": "Contact",
       "url": "/contact",
       "isVisible": true,
-      "displayOrder": 4,
+      "displayOrder": 3,
       "isCta": false
     },
     {
@@ -444,7 +436,7 @@
       "label": "Start a Project",
       "url": "/start-a-project",
       "isVisible": true,
-      "displayOrder": 5,
+      "displayOrder": 4,
       "isCta": true
     }
   ]

@@ -15,9 +15,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const [imgError, setImgError] = useState(false);
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-[#08090E] border-b border-[#1E2330]">
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-transparent border-b border-[#1E2330]/80">
       {/* Subtle background ambient mesh */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-blue-600/10 blur-[130px] pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-blue-600/20 blur-[130px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl">

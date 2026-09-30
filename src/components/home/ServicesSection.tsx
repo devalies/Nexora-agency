@@ -50,7 +50,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ services, onNa
               <div
                 key={service.id}
                 onClick={() => onNavigate(`/contact?service=${encodeURIComponent(service.title)}`)}
-                className="bg-[#0D1017] border border-[#1E2330] p-8 rounded-xl hover:border-blue-500/50 hover:bg-[#111520] transition-all cursor-pointer group flex flex-col justify-between shadow-lg shadow-black/30"
+                className="bg-[#0D1017] border border-[#1E2330] p-8 rounded-xl hover:border-blue-500 hover:bg-[#0E1526] hover:shadow-xl hover:shadow-blue-950/40 hover:-translate-y-0.5 transition-all duration-300 ease-out cursor-pointer group flex flex-col justify-between shadow-lg shadow-black/20"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">

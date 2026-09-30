@@ -42,7 +42,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ slug, onNa
 
   if (isLoading) {
     return (
-      <div className="pt-40 pb-20 bg-[#0A0A0A] min-h-screen text-center text-zinc-500">
+      <div className="pt-40 pb-20 bg-transparent min-h-screen text-center text-zinc-500">
         Loading service details...
       </div>
     );
@@ -50,7 +50,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ slug, onNa
 
   if (!service) {
     return (
-      <div className="pt-40 pb-20 bg-[#0A0A0A] min-h-screen text-center">
+      <div className="pt-40 pb-20 bg-transparent min-h-screen text-center">
         <h1 className="text-2xl font-bold text-white mb-4">Service Not Found</h1>
         <button
           onClick={() => onNavigate('/services')}
@@ -89,7 +89,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ slug, onNa
         canonicalPath={`/services/${service.slug}`}
       />
 
-      <div className="pt-32 pb-20 bg-[#0A0A0A] min-h-screen">
+      <div className="pt-32 pb-20 bg-transparent min-h-screen relative z-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => onNavigate('/services')}

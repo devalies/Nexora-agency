@@ -34,17 +34,17 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({ onNavigate }) =>
         canonicalPath="/industries"
       />
 
-      <div className="pt-32 pb-20 bg-[#050505] min-h-screen">
+      <div className="pt-32 pb-20 bg-transparent min-h-screen relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="max-w-3xl mb-16">
-            <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-3">
+            <div className="text-xs uppercase tracking-widest text-blue-500 font-semibold mb-3">
               Sector Expertise
             </div>
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white font-display mb-6">
               Tailored Architecture for High-Demand Industries
             </h1>
-            <p className="text-lg text-zinc-400 leading-relaxed">
+            <p className="text-lg text-[#A1A1AA] leading-relaxed">
               Every vertical presents distinct compliance, conversion patterns, and audience expectations. We apply deep domain understanding to craft bespoke digital experiences.
             </p>
           </div>
@@ -57,18 +57,18 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({ onNavigate }) =>
                 <div
                   key={ind.id}
                   onClick={() => onNavigate(`/industries/${ind.slug}`)}
-                  className="bg-[#0D0D0D] border border-[#1A1A1A] p-8 rounded-xl hover:border-zinc-700 hover:bg-[#121212] transition-all cursor-pointer group flex flex-col justify-between shadow-xl shadow-black/40"
+                  className="bg-[#111111] border border-[#27272A] p-8 rounded-xl hover:border-zinc-700 hover:bg-[#141414] transition-all cursor-pointer group flex flex-col justify-between"
                 >
                   <div>
-                    <h2 className="text-xl font-bold text-white mb-3 group-hover:text-zinc-200 transition-colors font-display">
+                    <h2 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors font-display">
                       {ind.name}
                     </h2>
-                    <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                    <p className="text-sm text-[#A1A1AA] leading-relaxed mb-6">
                       {ind.description}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-[#1A1A1A] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-zinc-400 group-hover:text-white">
+                  <div className="pt-4 border-t border-[#27272A]/60 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-blue-400">
                     <span>View Sector Framework</span>
                     <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </div>

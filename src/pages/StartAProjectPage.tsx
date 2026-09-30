@@ -122,47 +122,47 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
         canonicalPath="/start-a-project"
       />
 
-      <div className="pt-32 pb-24 bg-[#050505] min-h-screen">
+      <div className="pt-32 pb-24 bg-transparent min-h-screen relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-3">
+            <div className="text-xs uppercase tracking-widest text-blue-500 font-semibold mb-3">
               Project Scoping
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white font-display mb-4">
               Let’s Build Something Exceptional
             </h1>
-            <p className="text-base text-zinc-400">
+            <p className="text-base text-[#A1A1AA]">
               Complete our project builder to share your requirements. We’ll review your technical scope and schedule a strategic consultation within 24 hours.
             </p>
           </div>
 
           {submittedLeadId ? (
             /* Success confirmation screen */
-            <div className="bg-[#0D0D0D] border border-[#1A1A1A] rounded-2xl p-10 sm:p-14 text-center max-w-2xl mx-auto shadow-2xl shadow-black/60">
-              <div className="w-16 h-16 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center mx-auto text-white mb-6">
+            <div className="bg-[#111111] border border-[#27272A] rounded-2xl p-10 sm:p-14 text-center max-w-2xl mx-auto">
+              <div className="w-16 h-16 rounded-full bg-blue-950/60 border border-blue-500/60 flex items-center justify-center mx-auto text-blue-400 mb-6">
                 <Check className="w-8 h-8" />
               </div>
               <h2 className="text-3xl font-bold text-white font-display mb-3">
                 Project Scope Received
               </h2>
-              <div className="text-xs font-mono text-zinc-300 bg-[#141414] border border-[#1A1A1A] inline-block px-3 py-1 rounded mb-4">
+              <div className="text-xs font-mono text-blue-400 bg-blue-950/40 border border-blue-900/40 inline-block px-3 py-1 rounded mb-4">
                 Reference ID: {submittedLeadId}
               </div>
-              <p className="text-sm text-zinc-400 leading-relaxed mb-8">
+              <p className="text-sm text-[#A1A1AA] leading-relaxed mb-8">
                 Thank you, <span className="text-white font-medium">{form.name}</span>. A studio director has received your project briefing for <span className="text-white font-medium">{form.company || 'your team'}</span>. We will review your requirements, prepare initial observations, and reach out via <span className="text-white font-medium">{form.email}</span> within 24 hours.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <button
                   onClick={() => onNavigate('/work')}
-                  className="px-6 py-3 bg-white hover:bg-zinc-200 text-black rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer shadow-lg shadow-white/5"
+                  className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors"
                 >
                   Explore Selected Work
                 </button>
                 <button
                   onClick={() => onNavigate('/')}
-                  className="px-6 py-3 bg-[#141414] hover:bg-[#1f1f1f] text-zinc-300 border border-[#1A1A1A] rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+                  className="px-6 py-3 bg-[#171717] hover:bg-[#202020] text-zinc-300 border border-[#27272A] rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors"
                 >
                   Return to Home
                 </button>
@@ -170,9 +170,9 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
             </div>
           ) : (
             /* Multi-Step Interactive Form */
-            <div className="bg-[#0D0D0D] border border-[#1A1A1A] rounded-2xl p-6 sm:p-10 shadow-2xl shadow-black/50">
+            <div className="bg-[#111111] border border-[#27272A] rounded-2xl p-6 sm:p-10 shadow-2xl">
               {/* Stepper Progress Bar */}
-              <div className="flex items-center justify-between mb-8 pb-6 border-b border-[#1A1A1A]">
+              <div className="flex items-center justify-between mb-8 pb-6 border-b border-[#27272A]">
                 {[
                   { step: 1, title: 'Services' },
                   { step: 2, title: 'Scope & Budget' },
@@ -183,10 +183,10 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                     <div
                       className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-colors ${
                         currentStep === s.step
-                          ? 'bg-white text-black'
+                          ? 'bg-blue-600 text-white'
                           : currentStep > s.step
-                          ? 'bg-zinc-800 text-zinc-200 border border-zinc-700'
-                          : 'bg-[#141414] text-zinc-500 border border-[#1A1A1A]'
+                          ? 'bg-blue-950 text-blue-400 border border-blue-600/40'
+                          : 'bg-[#18181B] text-zinc-500'
                       }`}
                     >
                       {currentStep > s.step ? <Check className="w-3.5 h-3.5" /> : s.step}
@@ -203,7 +203,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
               </div>
 
               {error && (
-                <div className="mb-6 p-4 bg-red-950/40 border border-red-900/60 text-red-300 text-xs rounded-lg">
+                <div className="mb-6 p-4 bg-red-950/40 border border-red-800 text-red-300 text-xs rounded-lg">
                   {error}
                 </div>
               )}
@@ -227,8 +227,8 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                           onClick={() => toggleService(service.label)}
                           className={`p-5 rounded-xl border cursor-pointer transition-all flex flex-col justify-between ${
                             isSelected
-                              ? 'bg-[#141414] border-zinc-400 text-white shadow-md shadow-white/5'
-                              : 'bg-[#121212] border-[#1A1A1A] text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
+                              ? 'bg-blue-950/30 border-blue-500 text-white'
+                              : 'bg-[#171717] border-[#27272A] text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                           }`}
                         >
                           <div className="flex items-start justify-between gap-3">
@@ -238,7 +238,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                             <div
                               className={`w-5 h-5 rounded flex items-center justify-center shrink-0 border ${
                                 isSelected
-                                  ? 'bg-white border-white text-black'
+                                  ? 'bg-blue-600 border-blue-500 text-white'
                                   : 'border-zinc-700 bg-black/40'
                               }`}
                             >
@@ -275,10 +275,10 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                           type="button"
                           key={b}
                           onClick={() => setForm({ ...form, budgetRange: b })}
-                          className={`p-4 rounded-xl text-xs font-semibold text-center border transition-all cursor-pointer ${
+                          className={`p-4 rounded-xl text-xs font-semibold text-center border transition-all ${
                             form.budgetRange === b
-                              ? 'bg-white border-white text-black font-bold'
-                              : 'bg-[#141414] border-[#1A1A1A] text-zinc-300 hover:border-zinc-700'
+                              ? 'bg-blue-600 border-blue-500 text-white'
+                              : 'bg-[#171717] border-[#27272A] text-zinc-300 hover:border-zinc-600'
                           }`}
                         >
                           {b}
@@ -297,10 +297,10 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                           type="button"
                           key={t}
                           onClick={() => setForm({ ...form, timeline: t })}
-                          className={`p-4 rounded-xl text-xs font-semibold text-left border transition-all cursor-pointer ${
+                          className={`p-4 rounded-xl text-xs font-semibold text-left border transition-all ${
                             form.timeline === t
-                              ? 'bg-white border-white text-black font-bold'
-                              : 'bg-[#141414] border-[#1A1A1A] text-zinc-300 hover:border-zinc-700'
+                              ? 'bg-blue-600 border-blue-500 text-white'
+                              : 'bg-[#171717] border-[#27272A] text-zinc-300 hover:border-zinc-600'
                           }`}
                         >
                           {t}
@@ -332,7 +332,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                       value={form.existingWebsite}
                       onChange={(e) => setForm({ ...form, existingWebsite: e.target.value })}
                       placeholder="https://yourbrand.com"
-                      className="w-full bg-[#141414] border border-[#1A1A1A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-zinc-500"
+                      className="w-full bg-[#171717] border border-[#27272A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500"
                     />
                   </div>
 
@@ -345,7 +345,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       placeholder="What are the main problems with your current site? What specific goals are you looking to achieve (e.g. increase signups, elevate brand perception, modern mobile experience)?"
-                      className="w-full bg-[#141414] border border-[#1A1A1A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-zinc-500 resize-none"
+                      className="w-full bg-[#171717] border border-[#27272A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 resize-none"
                     />
                   </div>
 
@@ -358,7 +358,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                       value={form.competitors}
                       onChange={(e) => setForm({ ...form, competitors: e.target.value })}
                       placeholder="e.g. Stripe, Linear, Apple, Vercel"
-                      className="w-full bg-[#141414] border border-[#1A1A1A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-zinc-500"
+                      className="w-full bg-[#171717] border border-[#27272A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500"
                     />
                   </div>
                 </div>
@@ -387,7 +387,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         placeholder="Marcus Shaw"
-                        className="w-full bg-[#141414] border border-[#1A1A1A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-zinc-500"
+                        className="w-full bg-[#171717] border border-[#27272A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
                     <div>
@@ -400,7 +400,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         placeholder="marcus@company.com"
-                        className="w-full bg-[#141414] border border-[#1A1A1A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-zinc-500"
+                        className="w-full bg-[#171717] border border-[#27272A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
                   </div>
@@ -415,7 +415,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                         value={form.company}
                         onChange={(e) => setForm({ ...form, company: e.target.value })}
                         placeholder="Shaw Capital"
-                        className="w-full bg-[#141414] border border-[#1A1A1A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-zinc-500"
+                        className="w-full bg-[#171717] border border-[#27272A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
                     <div>
@@ -425,7 +425,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                       <select
                         value={form.referralSource}
                         onChange={(e) => setForm({ ...form, referralSource: e.target.value })}
-                        className="w-full bg-[#141414] border border-[#1A1A1A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-zinc-500"
+                        className="w-full bg-[#171717] border border-[#27272A] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500"
                       >
                         <option value="Search / Web">Google / Organic Search</option>
                         <option value="Twitter / X">Twitter / X</option>
@@ -439,12 +439,12 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
               )}
 
               {/* Navigation Controls */}
-              <div className="mt-10 pt-6 border-t border-[#1A1A1A] flex items-center justify-between">
+              <div className="mt-10 pt-6 border-t border-[#27272A] flex items-center justify-between">
                 {currentStep > 1 ? (
                   <button
                     type="button"
                     onClick={handlePrev}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#141414] hover:bg-[#1f1f1f] text-zinc-300 text-xs font-semibold uppercase tracking-wider border border-[#1A1A1A] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#171717] hover:bg-[#202020] text-zinc-300 text-xs font-semibold uppercase tracking-wider border border-[#27272A] transition-colors"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" />
                     <span>Previous</span>
@@ -457,7 +457,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white hover:bg-zinc-200 text-black text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer shadow-lg shadow-white/5"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold uppercase tracking-wider transition-colors"
                   >
                     <span>Next Step</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -467,7 +467,7 @@ export const StartAProjectPage: React.FC<StartAProjectPageProps> = ({ onNavigate
                     type="button"
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-white hover:bg-zinc-200 text-black text-xs font-semibold uppercase tracking-wider transition-colors disabled:opacity-50 cursor-pointer shadow-lg shadow-white/5"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold uppercase tracking-wider transition-colors disabled:opacity-50"
                   >
                     <span>{isSubmitting ? 'Transmitting Scope...' : 'Submit Project Brief'}</span>
                     <CheckCircle2 className="w-4 h-4" />

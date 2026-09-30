@@ -45,7 +45,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
         canonicalPath="/services"
       />
 
-      <div className="pt-32 pb-20 bg-[#0A0A0A] min-h-screen">
+      <div className="pt-32 pb-20 bg-transparent min-h-screen relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="max-w-3xl mb-16">

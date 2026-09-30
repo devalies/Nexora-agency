@@ -36,7 +36,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ industries
             <div
               key={ind.id}
               onClick={() => onNavigate(`/contact?industry=${encodeURIComponent(ind.name)}`)}
-              className="group cursor-pointer bg-[#0D1017] border border-[#1E2330] p-6 rounded-xl hover:border-blue-500/40 hover:bg-[#111520] transition-all flex flex-col justify-between shadow-lg shadow-black/20"
+              className="group cursor-pointer bg-[#0D1017] border border-[#1E2330] p-6 rounded-xl hover:border-blue-500 hover:bg-[#0E1526] hover:shadow-xl hover:shadow-blue-950/40 hover:-translate-y-0.5 transition-all duration-300 ease-out flex flex-col justify-between shadow-lg shadow-black/20"
             >
               <div>
                 <h3 className="text-base font-bold text-white mb-2 group-hover:text-blue-400 transition-colors font-display">
@@ -47,7 +47,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ industries
                 </p>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-[#1E2330] flex items-center justify-between text-xs text-[#64748B] group-hover:text-blue-400">
+              <div className="pt-4 mt-4 border-t border-[#1E2330] flex items-center justify-between text-xs text-[#64748B] group-hover:text-blue-400 transition-colors">
                 <span>Explore vertical</span>
                 <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>

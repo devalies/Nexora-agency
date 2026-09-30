@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </a>
               </li>
               {(Array.isArray(navigation) ? navigation : [])
-                .filter((item) => item.isVisible && item.url !== '/work' && item.url !== '/insights' && item.url !== '/')
+                .filter((item) => item.isVisible && item.url !== '/work' && item.url !== '/insights' && item.url !== '/about' && item.url !== '/')
                 .map((item) => (
                   <li key={item.id}>
                     <a

@@ -19,15 +19,15 @@ export const LegalPage: React.FC<LegalPageProps> = ({ type, onNavigate }) => {
         canonicalPath={isPrivacy ? '/privacy-policy' : '/terms'}
       />
 
-      <div className="pt-32 pb-20 bg-[#050505] min-h-screen">
+      <div className="pt-32 pb-20 bg-transparent min-h-screen relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-3">
+          <div className="text-xs uppercase tracking-widest text-blue-500 font-semibold mb-3">
             Legal & Compliance
           </div>
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-white font-display mb-8">
             {isPrivacy ? 'Privacy Policy' : 'Terms & Conditions of Service'}
           </h1>
-          <div className="text-xs text-zinc-500 mb-10 pb-4 border-b border-[#1A1A1A]">
+          <div className="text-xs text-zinc-500 mb-10 pb-4 border-b border-[#27272A]">
             Last Updated: January 1, 2026 · Nexora Studio LLC
           </div>
 
