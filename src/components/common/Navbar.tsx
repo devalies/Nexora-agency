@@ -26,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   const visibleNavLinks = [
     { id: 'nav_home', label: 'Home', url: '/', isVisible: true, displayOrder: 0, isCta: false },
     ...navList
-      .filter(item => item.isVisible && !item.isCta && item.url !== '/work' && item.url !== '/insights' && item.url !== '/about' && item.url !== '/')
+      .filter(item => item.isVisible && !item.isCta && item.url !== '/work' && item.url !== '/insights' && item.url !== '/about' && item.url !== '/industries' && item.url !== '/')
       .sort((a, b) => a.displayOrder - b.displayOrder),
   ];
 

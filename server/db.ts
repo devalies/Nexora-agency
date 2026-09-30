@@ -1789,7 +1789,7 @@ Speed communicates respect for your visitor’s device and time.`,
   // Navigation
   public getNavigationItems(): NavigationItem[] {
     return [...this.memoryStore.navigationItems]
-      .filter(item => item.url !== '/about')
+      .filter(item => item.url !== '/about' && item.url !== '/industries')
       .sort((a, b) => a.displayOrder - b.displayOrder);
   }
 

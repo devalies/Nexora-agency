@@ -63,7 +63,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     try {
       const items = await api.getNavigation();
       if (Array.isArray(items) && items.length > 0) {
-        setNavigation(items.filter(item => item.url !== '/about'));
+        setNavigation(items.filter(item => item.url !== '/about' && item.url !== '/industries'));
       }
     } catch (err) {
       console.warn('Could not fetch navigation from backend, using defaults:', err);

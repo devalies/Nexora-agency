@@ -9,8 +9,6 @@ import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { ProcessPage } from './pages/ProcessPage';
-import { IndustriesPage } from './pages/IndustriesPage';
-import { IndustryDetailPage } from './pages/IndustryDetailPage';
 import { ContactPage } from './pages/ContactPage';
 import { StartAProjectPage } from './pages/StartAProjectPage';
 import { LegalPage } from './pages/LegalPage';
@@ -54,15 +52,6 @@ export function App() {
 
     if (currentPath === '/process') {
       return <ProcessPage onNavigate={navigate} />;
-    }
-
-    if (currentPath === '/industries') {
-      return <IndustriesPage onNavigate={navigate} />;
-    }
-
-    if (currentPath.startsWith('/industries/')) {
-      const slug = currentPath.replace('/industries/', '');
-      return <IndustryDetailPage slug={slug} onNavigate={navigate} />;
     }
 
     if (currentPath === '/contact' || currentPath.startsWith('/contact?')) {

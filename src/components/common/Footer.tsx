@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </a>
               </li>
               {(Array.isArray(navigation) ? navigation : [])
-                .filter((item) => item.isVisible && item.url !== '/work' && item.url !== '/insights' && item.url !== '/about' && item.url !== '/')
+                .filter((item) => item.isVisible && item.url !== '/work' && item.url !== '/insights' && item.url !== '/about' && item.url !== '/industries' && item.url !== '/')
                 .map((item) => (
                   <li key={item.id}>
                     <a
@@ -165,54 +165,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          {/* Column 4: Key Sectors & Social */}
+          {/* Column 4: Social & Connect */}
           <div>
             <div className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
-              Industries
-            </div>
-            <ul className="space-y-2.5 text-sm mb-6">
-              <li>
-                <a
-                  href="/industries/saas-technology"
-                  onClick={(e) => handleLink(e, '/industries/saas-technology')}
-                  className="hover:text-white transition-colors"
-                >
-                  SaaS & Tech
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/industries/ecommerce-retail"
-                  onClick={(e) => handleLink(e, '/industries/ecommerce-retail')}
-                  className="hover:text-white transition-colors"
-                >
-                  E-commerce & DTC
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/industries/real-estate-architecture"
-                  onClick={(e) => handleLink(e, '/industries/real-estate-architecture')}
-                  className="hover:text-white transition-colors"
-                >
-                  Architecture & Real Estate
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/industries/finance-capital"
-                  onClick={(e) => handleLink(e, '/industries/finance-capital')}
-                  className="hover:text-white transition-colors"
-                >
-                  Finance & Capital
-                </a>
-              </li>
-            </ul>
-
-            <div className="text-xs font-semibold uppercase tracking-wider text-white mb-3">
               Connect
             </div>
-            <div className="flex items-center gap-3 text-sm">
+            <div className="flex flex-col space-y-2.5 text-sm">
               {socialLinks.linkedin && (
                 <a
                   href={socialLinks.linkedin}

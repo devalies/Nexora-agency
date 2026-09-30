@@ -3,11 +3,10 @@ import { HeroSection } from '../components/home/HeroSection';
 import { PrinciplesSection } from '../components/home/PrinciplesSection';
 import { ServicesSection } from '../components/home/ServicesSection';
 import { ProcessSection } from '../components/home/ProcessSection';
-import { IndustriesSection } from '../components/home/IndustriesSection';
 import { CTASection } from '../components/home/CTASection';
 import { SEO } from '../components/common/SEO';
 import { api } from '../services/api';
-import { Service, Industry } from '../types';
+import { Service } from '../types';
 import { useSettings } from '../context/SettingsContext';
 
 interface HomePageProps {
@@ -17,21 +16,15 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const { settings } = useSettings();
   const [services, setServices] = useState<Service[]>([]);
-  const [industries, setIndustries] = useState<Industry[]>([]);
 
   useEffect(() => {
-    Promise.all([
-      api.getServices('published'),
-      api.getIndustries(),
-    ])
-      .then(([servData, indData]) => {
+    api.getServices('published')
+      .then((servData) => {
         setServices(Array.isArray(servData) ? servData : []);
-        setIndustries(Array.isArray(indData) ? indData : []);
       })
       .catch((err) => {
         console.error('Error fetching home data:', err);
         setServices([]);
-        setIndustries([]);
       });
   }, []);
 
@@ -48,7 +41,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <PrinciplesSection />
         <ServicesSection services={services} onNavigate={onNavigate} />
         <ProcessSection onNavigate={onNavigate} />
-        <IndustriesSection industries={industries} onNavigate={onNavigate} />
         <CTASection onNavigate={onNavigate} ctaText={settings?.primaryCtaText} />
       </div>
     </>
